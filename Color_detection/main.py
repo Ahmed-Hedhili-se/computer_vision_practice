@@ -6,6 +6,7 @@ from chat import get_limits
 
 ##########
 # Define the color to track (BGR format) for example the coor blue :
+# in this case we detect blue color , and if you want to change other color (red for example ) you need to add some mofication in chat.py
 our_color = [255,0,0]
 ##########
 
@@ -34,3 +35,4 @@ while True :
 
 cap.release()
 cv2.destroyAllWindows()
+
