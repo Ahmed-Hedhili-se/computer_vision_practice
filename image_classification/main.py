@@ -1,5 +1,6 @@
 import os
 import pickle
+from google.colab import drive
 
 from skimage.io import imread
 from skimage.transform import resize
@@ -11,7 +12,11 @@ from sklearn.metrics import accuracy_score
 
 
 # prepare data
-input_dir = '/home/phillip/Desktop/todays_tutorial/19_parking_car_counter/code/clf-data'
+drive.mount('/content/gdrive')
+!scp '/content/gdrive/My Drive/Colab Notebooks/image_class/clf-data.zip' '/content/data.zip'
+
+!unzip '/content/data.zip' -d '/content/'
+input_dir = '/content/clf-data'
 categories = ['empty', 'not_empty']
 
 data = []
@@ -47,5 +52,6 @@ y_prediction = best_estimator.predict(x_test)
 score = accuracy_score(y_prediction, y_test)
 
 print('{}% of samples were correctly classified'.format(str(score * 100)))
+
 
 pickle.dump(best_estimator, open('./model.p', 'wb'))
